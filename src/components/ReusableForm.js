@@ -22,13 +22,7 @@ function ReusableForm(props) {
         name='content'
         defaultValue = {props.content ? props.content : ''}
       />
-      {/* <h5>Date</h5> */}
-      {/* <input
-        type='date'
-        name='createdAt'
-        defaultValue = {props.createdAt ? props.createdAt : ''}
-      /> */}
-      <button type="button" type='submit'>{props.formButtonText}</button>
+      <button type='submit'>{props.buttonText}</button>
     </form>
   );
 }

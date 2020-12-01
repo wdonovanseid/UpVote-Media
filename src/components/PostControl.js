@@ -13,7 +13,6 @@ class PostControl extends React.Component {
     this.state = {
       editing: false
     }
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick = () => {
@@ -36,14 +35,15 @@ class PostControl extends React.Component {
 
   handleAddingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
-    const { id, author, title, content, createdAt } = newPost;
+    const { id, author, title, content, createdAt, editedAt } = newPost;
     const action = {
       type: 'ADD_POST',
       id: id,
       author: author,
       title: title,
       content: content,
-      createdAt: createdAt
+      createdAt: createdAt,
+      editedAt: editedAt
     }
     dispatch(action);
     const action2 = {
@@ -62,10 +62,63 @@ class PostControl extends React.Component {
     dispatch(action);
   }
 
+  handleDeletingPost = (id) => {
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_POST',
+      id: id
+    }
+    dispatch(action);
+    const action2 = {
+      type: 'NO_POST'
+    }
+    dispatch(action2);
+  }
+
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
+  handleEditingPostInList = (postToEdit) => {
+    const { dispatch } = this.props;
+    const { id, author, title, content, createdAt, editedAt } = postToEdit;
+    const action = {
+      type: 'ADD_POST',
+      id: id,
+      title: title,
+      author: author,
+      content: content,
+      createdAt: createdAt,
+      editedAt: editedAt
+    }
+    dispatch(action);
+    const action2 = {
+      type: 'NO_POST'
+    }
+    dispatch(action2);
+    this.setState({
+      editing: false,
+    });
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.props.formVisibleOnPage) {
+    if (this.state.editing) {
+      currentlyVisibleState =
+        <EditPostForm
+          post={this.props.selectedPost}
+          onEditPost={this.handleEditingPostInList} />
+      buttonText = "Return to Post List";
+    } else if (this.props.selectedPost != null) {
+      currentlyVisibleState =
+        <PostDetail
+          post={this.props.selectedPost}
+          onClickingEdit={this.handleEditClick}
+          onClickingDelete={this.handleDeletingPost}
+        />
+      buttonText = "Return to Post List";
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState =
         <NewPostForm
           onNewPostCreation={this.handleAddingNewPostToList}
@@ -75,7 +128,7 @@ class PostControl extends React.Component {
       currentlyVisibleState =
         <PostList
           postList={this.props.masterPostList}
-          // onPostSelection={this.handleChangingSelectedPost}
+          onPostSelection={this.handleChangingSelectedPost}
         />;
       buttonText = "Create A Post";
     }

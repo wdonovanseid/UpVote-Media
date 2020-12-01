@@ -5,8 +5,9 @@ import ReusableForm from "./ReusableForm";
 
 function NewPostForm(props){
 
-  let today = new Date();
+  const today = new Date();
   const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
@@ -14,7 +15,8 @@ function NewPostForm(props){
       title: event.target.title.value,
       author: event.target.author.value,
       content: event.target.content.value,
-      createdAt: date,
+      editedAt: null,
+      createdAt: date+" - "+time,
       id: v4()
     });
   }
@@ -25,7 +27,7 @@ function NewPostForm(props){
       <hr />
       <ReusableForm
         formSubmissionHandler={handleNewPostFormSubmission}
-        formButtonText="Add Post" />
+        buttonText="Add Post" />
     </React.Fragment>
   );
 }
