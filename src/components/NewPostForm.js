@@ -4,6 +4,21 @@ import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 
 function NewPostForm(props){
+
+  let today = new Date();
+  const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+  function handleNewPostFormSubmission(event) {
+    event.preventDefault();
+    props.onNewPostCreation({
+      title: event.target.title.value,
+      author: event.target.author.value,
+      content: event.target.content.value,
+      createdAt: date,
+      id: v4()
+    });
+  }
+
   return (
     <React.Fragment>
       <h2>Add a new Post</h2>
@@ -13,16 +28,6 @@ function NewPostForm(props){
         formButtonText="Add Post" />
     </React.Fragment>
   );
-  function handleNewPostFormSubmission(event) {
-    event.preventDefault();
-props.onNewKegCPosttion({
-      title: event.target.title.value,
-      author: event.target.author.value,
-      content: event.target.content.value,
-      createdAt: event.target.createdAt.value,
-      id: v4()
-    });
-  }
 }
 
 NewPostForm.propTypes = {
