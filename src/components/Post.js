@@ -17,7 +17,7 @@ Post.propTypes = {
   title: PropTypes.string,
   author: PropTypes.string,
   content: PropTypes.string,
-  createdAt: PropTypes.instanceOf(Date)
+  createdAt: PropTypes.string
 }
 
 export default Post;

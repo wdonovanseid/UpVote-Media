@@ -1,4 +1,10 @@
-import React from './react';
+import React from 'react';
+import NewPostForm from './NewPostForm';
+import PostList from './PostList';
+import PostDetail from './PostDetail';
+import EditPostForm from './EditPostForm';
+import PropTypes from "prop-types";
+import { connect } from 'react-redux';
 
 class PostControl extends React.Component {
 
@@ -59,17 +65,19 @@ class PostControl extends React.Component {
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.props.formVisible) {
+    if (this.props.formVisibleOnPage) {
       currentlyVisibleState =
         <NewPostForm
-          onNewPostCreation={this.handleAddingNewPostToList} />
+          onNewPostCreation={this.handleAddingNewPostToList}
+        />
       buttonText = "Return to Post List";
     } else {
       currentlyVisibleState =
         <PostList
-          PostList={this.props.masterPostList}
-          onPostSelection={this.handleChangingSelectedPost} />;
-      buttonText = "Add Post";
+          postList={this.props.masterPostList}
+          // onPostSelection={this.handleChangingSelectedPost}
+        />;
+      buttonText = "Create A Post";
     }
     return (
       <React.Fragment>
@@ -82,9 +90,19 @@ class PostControl extends React.Component {
 }
 
 PostControl.propTypes = {
+  masterPostList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool,
+  selectedPost: PropTypes.object
+};
 
+const mapStateToProps = state => {
+  return {
+    masterPostList: state.masterPostList,
+    formVisibleOnPage: state.formVisibleOnPage,
+    selectedPost: state.selectedPost
+  }
 }
 
-
+PostControl = connect(mapStateToProps)(PostControl);
 
 export default PostControl;

@@ -9,7 +9,7 @@ function PostList(props){
       <hr/>
       {Object.values(props.postList).map((post) =>
         <Post
-          whenPostClicked = {props.onPostSelection}
+          // whenPostClicked = {props.onPostSelection}
           title={post.title}
           author={post.author}
           content={post.content}
