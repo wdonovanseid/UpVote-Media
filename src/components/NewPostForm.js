@@ -15,6 +15,18 @@ function NewPostForm(props){
   );
   function handleNewPostFormSubmission(event) {
     event.preventDefault();
-
+props.onNewKegCPosttion({
+      title: event.target.title.value,
+      author: event.target.author.value,
+      content: event.target.content.value,
+      createdAt: event.target.createdAt.value,
+      id: v4()
+    });
   }
 }
+
+NewPostForm.propTypes = {
+  onNewPostCreation: PropTypes.func
+};
+
+export default NewPostForm;
