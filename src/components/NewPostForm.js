@@ -15,8 +15,10 @@ function NewPostForm(props){
       title: event.target.title.value,
       author: event.target.author.value,
       content: event.target.content.value,
-      editedAt: null,
       createdAt: date+" - "+time,
+      editedAt: null,
+      upVotes: 0,
+      downVotes: 0,
       id: v4()
     });
   }

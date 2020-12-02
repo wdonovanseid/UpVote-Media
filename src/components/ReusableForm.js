@@ -17,7 +17,7 @@ function ReusableForm(props) {
         defaultValue = {props.author ? props.author : ''}
       />
       <h5>Content</h5>
-      <input
+      <textarea
         type='text'
         name='content'
         defaultValue = {props.content ? props.content : ''}

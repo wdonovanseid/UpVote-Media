@@ -17,6 +17,8 @@ function EditPostForm (props) {
       content: event.target.content.value,
       editedAt: date+" - "+time,
       createdAt: post.createdAt,
+      upVotes: post.upVotes,
+      downVotes: post.downVotes,
       id: post.id
     });
   }
@@ -25,12 +27,16 @@ function EditPostForm (props) {
     <React.Fragment>
       <ReusableForm 
         formSubmissionHandler={handleEditPostFormSubmission}
+        title={post.title}
+        author={post.author}
+        content={post.content}
         buttonText="Update Post" />
     </React.Fragment>
   );
 }
 
 EditPostForm.propTypes = {
+  post: PropTypes.object,
   onEditPost: PropTypes.func
 };
 

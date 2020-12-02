@@ -1,5 +1,5 @@
 export default (state = {}, action) => {
-  const { title, author, content, createdAt, editedAt, id } = action;
+  const { title, author, content, createdAt, editedAt, upVotes, downVotes, id } = action;
   switch (action.type) {
   case 'ADD_POST':
     return Object.assign({}, state, {
@@ -9,6 +9,8 @@ export default (state = {}, action) => {
         content: content,
         createdAt: createdAt,
         editedAt: editedAt,
+        upVotes: upVotes,
+        downVotes: downVotes,
         id: id
       }
     });

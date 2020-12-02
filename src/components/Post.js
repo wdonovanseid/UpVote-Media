@@ -9,6 +9,8 @@ function Post(props){
         <h3>{props.author} - {props.title}</h3>
         <p>Created: {props.createdAt}</p>
         <p>{props.editedAt != null && "Edited: "+props.editedAt}</p>
+        <p>UpVotes: {props.upVotes}</p>
+        <p>DownVotes: {props.downVotes}</p>
       </div>
       <hr/>
     </React.Fragment>
@@ -20,7 +22,9 @@ Post.propTypes = {
   author: PropTypes.string,
   content: PropTypes.string,
   createdAt: PropTypes.string,
-  editedAt: PropTypes.string
+  editedAt: PropTypes.string,
+  upVotes: PropTypes.number,
+  downVotes:PropTypes.number
 }
 
 export default Post;

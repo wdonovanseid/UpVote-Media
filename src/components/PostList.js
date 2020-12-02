@@ -15,6 +15,8 @@ function PostList(props){
           content={post.content}
           createdAt={post.createdAt}
           editedAt={post.editedAt}
+          upVotes={post.upVotes}
+          downVotes={post.downVotes}
           id={post.id}
           key={post.id}
         />
