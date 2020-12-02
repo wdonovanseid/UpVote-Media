@@ -16,12 +16,12 @@ class PostControl extends React.Component {
   handleClick = () => {
     const { dispatch } = this.props;
     if (this.props.selectedPost != null) {
-      const action = a.noPost();
+      const action = a.noPost;
       dispatch(action);
-      const action2 = a.hideEditForm();
+      const action2 = a.hideEditForm;
       dispatch(action2);
     } else {
-      const action = a.toggleForm();
+      const action = a.toggleForm;
       dispatch(action);
     }
   }
@@ -30,7 +30,7 @@ class PostControl extends React.Component {
     const { dispatch } = this.props;
     const action = a.addPost(newPost);
     dispatch(action);
-    const action2 = a.toggleForm();
+    const action2 = a.toggleForm;
     dispatch(action2)
   }
 
@@ -45,14 +45,13 @@ class PostControl extends React.Component {
     const { dispatch } = this.props;
     const action = a.deletePost(id);
     dispatch(action);
-    this.setState({
-      selectedTicket: null
-    })
+    const action2 = a.noPost;
+    dispatch(action2);
   }
 
   handleEditClick = () => {
     const { dispatch } = this.props;
-    const action = a.showEditForm();
+    const action = a.showEditForm;
     dispatch(action);
   }
 
@@ -60,9 +59,9 @@ class PostControl extends React.Component {
     const { dispatch } = this.props;
     const action = a.addPost(postToEdit);
     dispatch(action);
-    const action2 = a.noPost();
+    const action2 = a.noPost;
     dispatch(action2);
-    const action3 = a.hideEditForm();
+    const action3 = a.hideEditForm;
     dispatch(action3);
   }
 
