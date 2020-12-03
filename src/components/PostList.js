@@ -7,7 +7,9 @@ function PostList(props){
     <React.Fragment>
       <h2>Post List</h2>
       <hr/>
-      {Object.values(props.postList).map((post) =>
+      {Object.values(props.postList)
+      .sort((a, b) => b.upVotes - a.upVotes)
+      .map((post) =>
         <Post
           whenPostClicked = {props.onPostSelection}
           title={post.title}

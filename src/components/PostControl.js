@@ -5,13 +5,9 @@ import PostDetail from './PostDetail';
 import EditPostForm from './EditPostForm';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
-import * as a from './../actions/index';
+import * as a from './../actions/index.js';
 
 class PostControl extends React.Component {
-
-  // constructor(props) {
-  //   super(props);
-  // }
 
   handleClick = () => {
     const { dispatch } = this.props;
@@ -66,44 +62,19 @@ class PostControl extends React.Component {
   }
 
   handleUpVoteButton = (postToUpVote) => {
-    const { dispatch } = this.props;
-    const { id, author, title, content, createdAt, editedAt, upVotes, downVotes } = postToUpVote;
-    const action = {
-      type: 'ADD_POST',
-      id: id,
-      title: title,
-      author: author,
-      content: content,
-      createdAt: createdAt,
-      editedAt: editedAt,
-      upVotes: upVotes+1,
-      downVotes: downVotes
-    }
-    dispatch(action);
-    const action2 = {
-      type: 'SELECTED_POST',
-      selectedPost: postToUpVote
-    }
-    dispatch(action2);
+    // const { dispatch } = this.props;
+    // const action = a.upVotePost(postToUpVote);
+    // dispatch(action);
+    postToUpVote.upVotes+=1;
+    this.setState({});
   }
 
   handleDownVoteButton = (postToDownVote) => {
-    // const x = this.props.masterPostList.find(x => x.id === id);
-    // x.downVotes += 1;
-    const { dispatch } = this.props;
-    const { id, author, title, content, createdAt, editedAt, upVotes, downVotes } = postToDownVote;
-    const action = {
-      type: 'ADD_POST',
-      id: id,
-      title: title,
-      author: author,
-      content: content,
-      createdAt: createdAt,
-      editedAt: editedAt,
-      upVotes: upVotes,
-      downVotes: downVotes+1
-    }
-    dispatch(action);
+    // const { dispatch } = this.props;
+    // const action = a.downVotePost(postToDownVote);
+    // dispatch(action);
+    postToDownVote.downVotes+=1;
+    this.setState({});
   }
 
   render() {
@@ -169,3 +140,24 @@ const mapStateToProps = state => {
 PostControl = connect(mapStateToProps)(PostControl);
 
 export default PostControl;
+
+
+
+
+// handleChangingSelectedUpvote = (upVoteId) => {
+//   const postToUpvote = this.props.masterPostList[upVoteId];
+//   const {dispatch} = this.props;
+//   const {id, title, author, body, date, picture, vote} = postToUpvote;
+//   const upvote = vote + 1;
+//   const action = {
+//     type: 'ADD_POST',
+//     id: id,
+//     title: title,
+//     author: author,
+//     body: body,
+//     date: date,
+//     picture: picture,
+//     vote: upvote
+//   }
+//   dispatch(action);
+// };
